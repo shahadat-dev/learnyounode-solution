@@ -76,4 +76,66 @@ http
 
 // step 8 : HTTP Collect
 
-var http = require('http');
+/*var http = require('http')
+	,bl = require('bl'),
+	url = process.argv[2];
+
+http.get(url, function(response){
+
+	response.pipe(bl(function(err,data){
+		if(err){console.log(err)}
+		console.log(data.toString().length);
+		console.log(data.toString());
+	}))
+	
+	response.on('error', function(e){
+		console.log("There was an error: ", e.message);
+	});	
+})
+
+.on('error', function(e){
+	console.log("There was an error: ", e.message);
+});
+*/
+
+// step 9 : Juggling Async
+
+/*var http = require('http')
+	,bl = require('bl')
+	,url1 = process.argv[2]
+	,url2 = process.argv[3]
+	,url3 = process.argv[4];
+
+// 1st url
+http.get(url1, function(response){
+
+	response.pipe(bl(function(err,data){
+		if(err){console.log(err)}
+		console.log(data.toString());
+	}));
+
+	// 2nd url
+	http.get(url2, function(response){
+		response.pipe(bl(function(err,data){
+			if(err){console.log(err)}
+			console.log(data.toString());
+		}));
+
+		// 3rd url
+		http.get(url3, function(response){
+			response.pipe(bl(function(err,data){
+				if(err){console.log(err)}
+				console.log(data.toString());
+			}));
+		}); // end 3rd url
+		
+	}); // end 2nd url
+
+}); // end 1st url
+*/
+
+// step 10 : Time Server
+
+
+
+
