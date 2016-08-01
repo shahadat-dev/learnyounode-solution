@@ -136,7 +136,7 @@ http.get(url1, function(response){
 
 // step 10 : Time Server
 
-var net = require('net'),
+/*var net = require('net'),
 	strftime = require('strftime'),
 	port = process.argv[2];
 
@@ -148,5 +148,16 @@ var server = net.createServer(function(socket){
 server.listen(port, function(){
 	
 });
+*/
 
+// step 11 : HTTP File Server
 
+var http = require('http'),
+	fs = require('fs');
+
+var server = http.createServer(function(req, res){
+	var readStream = fs.createReadStream(process.argv[3]);
+	readStream.pipe(res);
+});
+
+server.listen(process.argv[2]);
