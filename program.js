@@ -136,6 +136,17 @@ http.get(url1, function(response){
 
 // step 10 : Time Server
 
+var net = require('net'),
+	strftime = require('strftime'),
+	port = process.argv[2];
 
+var server = net.createServer(function(socket){
+	var data = strftime('%Y-%m-%d %H:%M');
+	socket.end(data+"\n");
+});
+
+server.listen(port, function(){
+	
+});
 
 
