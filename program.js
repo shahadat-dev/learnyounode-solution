@@ -152,7 +152,7 @@ server.listen(port, function(){
 
 // step 11 : HTTP File Server
 
-var http = require('http'),
+/*var http = require('http'),
 	fs = require('fs');
 
 var server = http.createServer(function(req, res){
@@ -161,3 +161,21 @@ var server = http.createServer(function(req, res){
 });
 
 server.listen(process.argv[2]);
+*/
+
+// step 12 : HTTP Uppercaserer
+
+var http = require('http'),
+    map = require('through2-map');
+
+var server = http.createServer(function (req, res){
+    if(req.method === 'POST'){
+        req.pipe(map(function(chunk){
+            return chunk.toString().toUpperCase();
+        })).pipe(res);
+    }
+});
+
+server.listen(process.argv[2]);
+
+
