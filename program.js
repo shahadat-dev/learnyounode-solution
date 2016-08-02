@@ -165,7 +165,7 @@ server.listen(process.argv[2]);
 
 // step 12 : HTTP Uppercaserer
 
-var http = require('http'),
+/*var http = require('http'),
     map = require('through2-map');
 
 var server = http.createServer(function (req, res){
@@ -177,5 +177,43 @@ var server = http.createServer(function (req, res){
 });
 
 server.listen(process.argv[2]);
+*/
+
+// step 13 : HTTP JSON API SERVER
+
+var http = require('http'),
+    url = require('url');
+
+http.createServer(function (req, res){
+    var parsedUrl = url.parse(req.url, true);
+    var urlType = parsedUrl.pathname.split('/')[2];
+    var time = new Date(parsedUrl.query.iso);
+    var result;
+
+    if(urlType == 'parsetime'){
+        result = {
+            hour : time.getHours(),
+            minute : time.getMinutes(),
+            second : time.getSeconds()
+        }
+    }
+     
+    if(urlType == 'unixtime'){
+        result = {
+            unixtime : time.getTime()
+        }
+    }
+   
+    res.writeHead(200, {'Content-Type' : 'application/json'});
+    
+    res.end(JSON.stringify(result));
+
+}).listen(process.argv[2], function(){
+    console.log("server listen on port "+ process.argv[2]);
+});
+
+
+
+
 
 
